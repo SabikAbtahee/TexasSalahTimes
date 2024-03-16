@@ -1,10 +1,17 @@
-
-
 <div class="background-container">
-  <app-timer-card/>
-  <div>Fazr : {{ azaan?.Fazr }}</div>
-  <div>Dhuhr : {{ azaan?.Zohr }}</div>
-  <div>Asr : {{ azaan?.Asr }}</div>
-  <div>Maghrib : {{ azaan?.Magrib }}</div>
-  <div>Isha : {{ azaan?.Esha }}</div>
+  <div class="box-1">
+    <app-timer-card [text]="'Fazr'" [time]="azaan?.Fazr" />
+  </div>
+  <div class="box-2">
+    <app-timer-card [text]="'Dhuhr'" [time]="azaan?.Zohr" />
+  </div>
+  <div class="box-3">
+    <app-timer-card [text]="'Asr'" [time]="azaan?.Asr" />
+  </div>
+  <div class="box-4">
+    <app-timer-card [text]="'Maghrib'" [time]="azaan?.Magrib" />
+  </div>
+  <div class="box-5">
+    <app-timer-card [text]="'Isha'" [time]="azaan?.Esha" />
+  </div>
 </div>

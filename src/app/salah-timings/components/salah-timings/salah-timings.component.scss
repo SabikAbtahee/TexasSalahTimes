@@ -1,8 +1,27 @@
 .background-container {
-  background-image: url('../../../../assets/youthIftar.jpeg'); /* Adjust the path based on your project structure */
+  background-image: url("../../../../assets/youthIftar.jpeg"); /* Adjust the path based on your project structure */
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   height: 100vh;
-  /* You can add more styling properties as needed */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.box-1 {
+  margin-bottom: 70px;
+}
+.box-2 {
+  margin-bottom: 188px;
+}
+.box-3 {
+  margin-bottom: 70px;
+}
+.box-4 {
+  margin-bottom: 188px;
+}
+.box-5 {
+  margin-bottom: 70px;
 }

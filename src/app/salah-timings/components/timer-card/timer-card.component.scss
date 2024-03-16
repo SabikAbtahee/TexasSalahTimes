@@ -1,35 +1,48 @@
-.mosque{
-  width: 148px;
-  height: 148px;
-  background-color: antiquewhite;
-  border-radius: 50%;
-}
-
-
 .container {
   position: relative;
   text-align: center;
+  width: 188px;
+  height: 128px;
 }
 .image {
-  width: 300px; /* adjust as needed */
   display: inline-block;
+  width: 74px;
+  height: 74px;
+  background-color: #ffffff;
+  border-radius: 50%;
 }
 .text1 {
   position: absolute;
   bottom: 0;
-  left: 0;
-  text-align: left;
+  left: -44px;
+  text-align: right;
+  font-size:36px;
+  color:#ffe3e3;
+  font-weight: bold;
+  font-family: cursive;
+  width: 138px;
 }
 .text2 {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: cursive;
+  color:#890909;
 }
 .rounded-bg {
-  background-color: #f8f9fa; /* Adjust background color as needed */
-  border-radius: 20px; /* Adjust border radius as needed */
-  padding: 10px 20px; /* Adjust padding as needed */
-  display: inline-block;
-  margin-bottom: -20px; /* Adjust margin as needed to overlap */
+  position: absolute;
+  bottom:4px;
+  right: 4px;
+  background-color: #ffeaea; /* Adjust background color as needed */
+  border-radius: 50%; /* Adjust border radius as needed */
+  display: flex;
+  width: 88px;
+  height: 88px;
+}
+.ampm{
+  font-size: 16px;
 }
