@@ -1,28 +1,28 @@
 .container {
   position: relative;
   text-align: center;
-  width: 188px;
-  height: 128px;
+  width: 180px;
+  height: 100px;
 }
 .image {
   display: inline-block;
-  width: 74px;
-  height: 74px;
+  width: 60px;
+  height: 60px;
 
   border-radius: 50%;
   background-image: url("../../../../assets/mosque.jpg");
-  background-size: 74px 74px;
+  background-size: 60px 60px;
 }
 .text1 {
   position: absolute;
   bottom: 0;
-  left: -44px;
+  left: -8px;
   text-align: right;
-  font-size:36px;
+  font-size:26px;
   color:#ffe3e3;
   font-weight: bold;
-  font-family: cursive;
-  width: 138px;
+  font-family: 'Calibri W02 Regular';
+  width: 100px;
 }
 .text2 {
   display: flex;
@@ -30,21 +30,45 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
-  font-family: cursive;
+  font-family: 'Calibri W02 Regular';
   color:#890909;
 }
 .rounded-bg {
   position: absolute;
   bottom:4px;
-  right: 4px;
+  right: 26px;
   background-color: #ffeaea; /* Adjust background color as needed */
   border-radius: 50%; /* Adjust border radius as needed */
   display: flex;
-  width: 88px;
-  height: 88px;
+  width: 60px;
+  height: 60px;
 }
 .ampm{
-  font-size: 16px;
+  font-size: 12px;
 }
+
+
+
+// @media (max-width: 600px) {
+//   .text1 {
+//     font-size:16px;
+//   }
+// }
+
+// /* Styles for screens between 600px and 900px */
+// @media (min-width: 600px) and (max-width: 900px) {
+//   .text1 {
+//     font-size:20px;
+
+//   }
+// }
+
+// /* Styles for screens larger than 900 pixels */
+// @media (min-width: 900px) {
+//   .text1 {
+//     font-size:36px;
+
+//   }
+// }
