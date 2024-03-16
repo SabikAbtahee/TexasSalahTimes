@@ -3,25 +3,49 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
 }
 
-.box-1 {
-  margin-bottom: 70px;
+@media  (max-width: 500px) {
+  .background-container {
+    background-size: 100vw 100vh;
+    height: 100vh;
+
+  }
+  .box {
+    margin-top: 400px;
+  }
 }
-.box-2 {
-  margin-bottom: 70px;
+
+@media (min-width: 500px) and (max-width: 600px) {
+  .background-container {
+    background-size: 100vw 100vh;
+    height: 100vh;
+
+  }
+  .box {
+    margin-top: 554px;
+  }
 }
-.box-3 {
-  margin-bottom: 70px;
+
+@media (min-width: 600px) and (max-width: 900px) {
+  .background-container {
+    overflow: hidden;
+    height: 100vh;
+  }
+  .box {
+    margin-top: 300px;
+  }
 }
-.box-4 {
-  margin-bottom: 70px;
-}
-.box-5 {
-  margin-bottom: 70px;
+
+@media (min-width: 900px) {
+  .background-container {
+    height: 100vh;
+  }
+  .box {
+    margin-top: 554px;
+  }
 }
