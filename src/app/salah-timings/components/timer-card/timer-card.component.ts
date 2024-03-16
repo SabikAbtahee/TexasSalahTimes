@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { mosqueImage } from '../../../shared/app.const';
 
 @Component({
   selector: 'app-timer-card',
@@ -8,7 +9,7 @@ import { Component, Input } from '@angular/core';
 export class TimerCardComponent {
   @Input({ required: true })
   text!: string;
-
+  mosqueImage = mosqueImage;
   timeText!: string;
   timeNumber!: string;
   @Input({ required: true }) set time(value: string | undefined) {
