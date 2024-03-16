@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { SalahTimingsService } from '../../services/salah-timings.service';
-import { first, takeUntil } from 'rxjs';
+import { first } from 'rxjs';
 import { assetImage } from '../../../shared/app.const';
 import { SalahWakt } from '../../../shared/app.interfaces';
+import { SalahTimingsService } from '../../services/salah-timings.service';
 
 @Component({
   selector: 'app-salah-timings',

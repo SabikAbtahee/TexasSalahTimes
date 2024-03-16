@@ -1,8 +1,7 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SalahTimingsComponent } from './components/salah-timings/salah-timings.component';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { SalahTimingsComponent } from './components/salah-timings/salah-timings.component';
 import { TimerCardComponent } from './components/timer-card/timer-card.component';
 
 @NgModule({
