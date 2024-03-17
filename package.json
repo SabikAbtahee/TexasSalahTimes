@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-page":"ng b --output-path dist --base-href /TexasSalahTimes/ && xcopy /E /Y dist\\browser docs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:SalahTimes": "node dist/texas-salah-times/server/server.mjs"
