@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs';
 import { assetImage } from '../../../shared/app.const';
 import { SalahWakt } from '../../../shared/app.interfaces';
-import { SalahTimingsService } from '../../services/salah-timings.service';
+import { SalahTimingsService } from '../../../services/salah-timings.service';
 
 @Component({
   selector: 'app-salah-timings',
