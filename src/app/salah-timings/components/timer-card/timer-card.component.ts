@@ -1,10 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { mosqueImage } from '../../../shared/app.const';
+import { fuseAnimations } from '../../../shared/animations';
 
 @Component({
   selector: 'app-timer-card',
   templateUrl: './timer-card.component.html',
   styleUrl: './timer-card.component.scss',
+  animations:fuseAnimations
 })
 export class TimerCardComponent {
   @Input({ required: true })

@@ -11,4 +11,8 @@ export class FileManagerService {
   getCurrentAnnouncementImage(imageName:string): string{
     return `assets/${imageName}`;
   }
+
+  getLogo(): string{
+    return 'assets/Logo.jpg';
+  }
 }

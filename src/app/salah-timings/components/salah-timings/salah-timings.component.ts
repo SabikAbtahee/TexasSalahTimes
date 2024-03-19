@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs';
-import { assetImage } from '../../../shared/app.const';
+import { PrayerText, assetImage } from '../../../shared/app.const';
 import { SalahWakt } from '../../../shared/app.interfaces';
-import { SalahTimingsService } from '../../../services/salah-timings.service';
+import { TimingsService } from '../../../services/timings.service';
+import { FileManagerService } from '../../../services/file-manager.service';
+import { fuseAnimations } from '../../../shared/animations';
 
 @Component({
   selector: 'app-salah-timings',
   templateUrl: './salah-timings.component.html',
   styleUrl: './salah-timings.component.scss',
+  animations: fuseAnimations,
 })
 export class SalahTimingsComponent implements OnInit {
   iqama: SalahWakt | null = null;
@@ -16,9 +19,23 @@ export class SalahTimingsComponent implements OnInit {
   azaans: string[] = [];
 
   image = assetImage;
-  constructor(private salahTimings: SalahTimingsService) {}
+  logo: string;
+  prayerText = PrayerText;
+  hizriDate: string | null = null;
+  englishDate: string | null = null;
+  constructor(
+    private salahTimings: TimingsService,
+    private fileManager: FileManagerService
+  ) {}
+
   ngOnInit(): void {
+    this.setLogo();
     this.prepareTimings();
+    this.setDate();
+  }
+
+  setLogo() {
+    this.logo = this.fileManager.getLogo();
   }
 
   prepareTimings(): void {
@@ -53,21 +70,26 @@ export class SalahTimingsComponent implements OnInit {
 
   loadTime() {
     this.iqama = {
-      Fazr: this.iqamas[0],
-      Zohr: this.iqamas[1],
-      Asr: this.iqamas[2],
-      Magrib: this.iqamas[3],
-      Esha: this.iqamas[4],
-      Jummah: this.iqamas[6],
+      [PrayerText.Fazr]: this.iqamas[0],
+      [PrayerText.Dhuhr]: this.iqamas[1],
+      [PrayerText.Asr]: this.iqamas[2],
+      [PrayerText.Maghrib]: this.iqamas[3],
+      [PrayerText.Isha]: this.iqamas[4],
+      [PrayerText.Jummah]: this.iqamas[6],
     };
 
     this.azaan = {
-      Fazr: this.azaans[0],
-      Zohr: this.azaans[1],
-      Asr: this.azaans[2],
-      Magrib: this.azaans[3],
-      Esha: this.azaans[4],
-      Jummah: this.iqamas[6],
+      [PrayerText.Fazr]: this.azaans[0],
+      [PrayerText.Dhuhr]: this.azaans[1],
+      [PrayerText.Asr]: this.azaans[2],
+      [PrayerText.Maghrib]: this.azaans[3],
+      [PrayerText.Isha]: this.azaans[4],
+      [PrayerText.Jummah]: this.azaans[6],
     };
+  }
+
+  setDate() {
+    this.hizriDate = this.salahTimings.getHizriDate();
+    this.englishDate = this.salahTimings.getEnglishDate();
   }
 }

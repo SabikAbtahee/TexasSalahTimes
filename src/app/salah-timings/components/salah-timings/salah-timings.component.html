@@ -1,19 +1,32 @@
-<!-- <div class="background-container">
-  <div class="box">
-    <app-timer-card [text]="'Fazr'" [time]="azaan?.Fazr" />
+<app-announcements />
+<div class="border border-dashed border-black"></div>
+<div class="flex flex-col">
+  <div class="flex flex-row">
+    <div class="h-36 w-36  max-md:h-28 max-md:w-28 max-sm:h-20 max-sm:w-20 flex justify-center items-center p-3 gap-2">
+      <img [src]="logo" />
+    </div>
+    <div class="flex flex-row justify-evenly w-full items-center">
+      <div>
+        <app-timer-card [text]="prayerText.Fazr" [time]="azaan?.Fazr" />
+      </div>
+      <div>
+        <app-timer-card [text]="prayerText.Dhuhr" [time]="azaan?.Dhuhr" />
+      </div>
+      <div>
+        <app-timer-card [text]="prayerText.Asr" [time]="azaan?.Asr" />
+      </div>
+      <div>
+        <app-timer-card [text]="prayerText.Maghrib" [time]="azaan?.Maghrib" />
+      </div>
+      <div>
+        <app-timer-card [text]="prayerText.Isha" [time]="azaan?.Isha" />
+      </div>
+    </div>
   </div>
-  <div class="box">
-    <app-timer-card [text]="'Dhuhr'" [time]="azaan?.Zohr" />
-  </div>
-  <div class="box">
-    <app-timer-card [text]="'Asr'" [time]="azaan?.Asr" />
-  </div>
-  <div class="box">
-    <app-timer-card [text]="'Maghrib'" [time]="azaan?.Magrib" />
-  </div>
-  <div class="box">
-    <app-timer-card [text]="'Isha'" [time]="azaan?.Esha" />
-  </div>
-</div> -->
 
-<app-announcements/>
+  <div
+    class="flex justify-center font-bold text-3xl max-lg:text-2xl max-md:text-xl max-sm:text-sm gap-2 text-color-gray mt-1 symphony"
+  >
+    <span> {{ englishDate }} </span>|<span>{{ hizriDate }}</span>
+  </div>
+</div>
