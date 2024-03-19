@@ -18,14 +18,14 @@ export class TimingsService {
   getHizriDate(date?: Date): string {
     const currentDate = date ? date : new Date();
 
-    const day = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura-nu-latn', {
+    const day = new Intl.DateTimeFormat('en-TN-u-ca-islamic', {
       day: 'numeric',
     }).format(currentDate);
 
-    const month = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura-nu-latn', {
+    const month = new Intl.DateTimeFormat('en-TN-u-ca-islamic', {
       month: 'long',
     }).format(currentDate);
-    const year = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura-nu-latn', {
+    const year = new Intl.DateTimeFormat('en-TN-u-ca-islamic', {
       year: 'numeric',
     })
       .format(currentDate)
