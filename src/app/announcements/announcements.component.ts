@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { FileManagerService } from '../services/file-manager.service';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-announcements',
   standalone: true,
-  imports: [],
+  imports: [NgOptimizedImage],
   templateUrl: './announcements.component.html',
   styleUrl: './announcements.component.scss'
 })
