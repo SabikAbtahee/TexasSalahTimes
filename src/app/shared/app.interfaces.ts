@@ -1,8 +1,10 @@
+import { PrayerText } from "./app.const";
+
 export interface SalahWakt{
-  Fazr: string;
-  Zohr: string;
-  Asr: string;
-  Magrib: string;
-  Esha: string;
-  Jummah: string;
+  [PrayerText.Fazr]: string;
+  [PrayerText.Dhuhr]: string;
+  [PrayerText.Asr]: string;
+  [PrayerText.Maghrib]: string;
+  [PrayerText.Isha]: string;
+  [PrayerText.Jummah]: string;
 }

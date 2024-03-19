@@ -1,7 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("./styles/colors.scss");
+@import url("./styles//typography.scss");
+
 body{
   margin: 0px;
-  background-image: url("./assets/bg-1.jpg");
 }
 @font-face {
 	font-family: 'Calibri W02 Light';

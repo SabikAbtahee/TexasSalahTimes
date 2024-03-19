@@ -1,21 +1,22 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SalahTimingsComponent } from './components/salah-timings/salah-timings.component';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { SalahTimingsComponent } from './components/salah-timings/salah-timings.component';
 import { TimerCardComponent } from './components/timer-card/timer-card.component';
+import { AnnouncementsComponent } from "../announcements/announcements.component";
 
 @NgModule({
-  declarations: [SalahTimingsComponent, TimerCardComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: SalahTimingsComponent,
-      },
-    ]),
-  ],
-  exports: [SalahTimingsComponent],
+    declarations: [SalahTimingsComponent, TimerCardComponent],
+    exports: [SalahTimingsComponent],
+    imports: [
+        CommonModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: SalahTimingsComponent,
+            },
+        ]),
+        AnnouncementsComponent
+    ]
 })
 export class SalahTimingsModule {}
