@@ -31,9 +31,9 @@ export class SalahTimingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.setLogo();
-    // this.prepareTimings();
+    this.prepareTimings();
     this.setDate();
-    this.setClock();
+    // this.setClock();
   }
 
   setClock() {
