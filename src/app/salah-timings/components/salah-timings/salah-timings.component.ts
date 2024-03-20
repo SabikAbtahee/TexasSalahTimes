@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { first } from 'rxjs';
+import { Observable, first, interval, map, take, timer } from 'rxjs';
 import { PrayerText, assetImage } from '../../../shared/app.const';
 import { SalahWakt } from '../../../shared/app.interfaces';
 import { TimingsService } from '../../../services/timings.service';
@@ -23,6 +23,7 @@ export class SalahTimingsComponent implements OnInit {
   prayerText = PrayerText;
   hizriDate: string | null = null;
   englishDate: string | null = null;
+  clock: Observable<Date>;
   constructor(
     private salahTimings: TimingsService,
     private fileManager: FileManagerService
@@ -32,6 +33,11 @@ export class SalahTimingsComponent implements OnInit {
     this.setLogo();
     this.prepareTimings();
     this.setDate();
+    this.setClock();
+  }
+
+  setClock() {
+    this.clock = timer(0, 1000).pipe(map(() => new Date()));
   }
 
   setLogo() {
