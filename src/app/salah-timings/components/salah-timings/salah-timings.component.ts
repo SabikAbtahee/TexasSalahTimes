@@ -33,7 +33,7 @@ export class SalahTimingsComponent implements OnInit {
     this.setLogo();
     this.prepareTimings();
     this.setDate();
-    this.setClock();
+    // this.setClock();
   }
 
   setClock() {
