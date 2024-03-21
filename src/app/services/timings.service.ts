@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env';
-import { delay } from 'rxjs';
+import { delay, retry } from 'rxjs';
 import { IslamicMonths } from '../shared/app.const';
 
 @Injectable({
@@ -12,8 +12,7 @@ export class TimingsService {
   constructor(private http: HttpClient, private datePipe: DatePipe) {}
 
   getTimes() {
-
-    return this.http.get(environment.PrayerTimings, { responseType: 'text' });
+    return this.http.get(environment.PrayerTimings, { responseType: 'text' }).pipe(retry(3));
   }
 
   getHizriDate(date?: Date): string {

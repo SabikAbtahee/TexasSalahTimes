@@ -1,22 +1,36 @@
-import { Component, OnInit, afterNextRender } from '@angular/core';
-import { Observable, first, interval, map, take, timer } from 'rxjs';
+import {
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+  afterNextRender,
+} from '@angular/core';
+import {
+  BehaviorSubject,
+  Observable,
+  Subject,
+  filter,
+  first,
+  map,
+  takeUntil,
+  timer,
+} from 'rxjs';
+import { FileManagerService } from '../../../services/file-manager.service';
+import { TimingsService } from '../../../services/timings.service';
+import { fuseAnimations } from '../../../shared/animations';
 import { PrayerText, assetImage } from '../../../shared/app.const';
 import { SalahWakt } from '../../../shared/app.interfaces';
-import { TimingsService } from '../../../services/timings.service';
-import { FileManagerService } from '../../../services/file-manager.service';
-import { fuseAnimations } from '../../../shared/animations';
-
 @Component({
   selector: 'app-salah-timings',
   templateUrl: './salah-timings.component.html',
   styleUrl: './salah-timings.component.scss',
   animations: fuseAnimations,
 })
-export class SalahTimingsComponent implements OnInit {
+export class SalahTimingsComponent implements OnInit, OnDestroy {
   iqama: SalahWakt | null = null;
   azaan: SalahWakt | null = null;
-  iqamas: string[] = [];
-  azaans: string[] = [];
+  iqamas: string[];
+  azaans: string[];
 
   image = assetImage;
   logo: string;
@@ -24,23 +38,29 @@ export class SalahTimingsComponent implements OnInit {
   hizriDate: string | null = null;
   englishDate: string | null = null;
   clock: Observable<Date>;
-  timeHtmlContent;
+  timeHtmlContent: BehaviorSubject<string> = new BehaviorSubject('');
+  _unsubscribeAll: Subject<boolean>;
   constructor(
+    private cdr: ChangeDetectorRef,
     private salahTimings: TimingsService,
     private fileManager: FileManagerService
   ) {
+    this._unsubscribeAll = new Subject();
     afterNextRender(() => {
       this.setClock();
       this.parseTimings();
     });
   }
+  ngOnDestroy(): void {
+    this._unsubscribeAll.next(true);
+    this._unsubscribeAll.complete();
+    this._unsubscribeAll.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.setLogo();
-    // this.prepareTimings();
     this.getTimings();
     this.setDate();
-    // this.setClock();
   }
 
   setClock() {
@@ -56,64 +76,46 @@ export class SalahTimingsComponent implements OnInit {
       .getTimes()
       .pipe(first())
       .subscribe((htmlContent) => {
-        this.timeHtmlContent = htmlContent;
+        this.timeHtmlContent.next(htmlContent);
       });
   }
 
   parseTimings() {
-    const parser = new DOMParser();
-    const htmlParsed = parser.parseFromString(
-      this.timeHtmlContent,
-      'text/html'
-    );
-    const timePattern = /\b\d{1,2}:\d{2}\s*(?:AM|PM)\b/g;
-    const prayerIqamaDivs = htmlParsed.querySelectorAll('.prayer_iqama_div');
-    prayerIqamaDivs.forEach((div) => {
-      let text: string = div.textContent as string;
-      const matches: Array<string> | null = text.match(timePattern);
-      if (matches) {
-        this.iqamas = [...this.iqamas, ...matches];
-      }
-    });
+    this.timeHtmlContent
+      .pipe(
+        takeUntil(this._unsubscribeAll),
+        filter((res) => (res ? true : false))
+      )
+      .subscribe((res) => {
+        setTimeout(() => {
+          const parser = new DOMParser();
+          const htmlParsed = parser.parseFromString(res, 'text/html');
+          const timePattern = /\b\d{1,2}:\d{2}\s*(?:AM|PM)\b/g;
+          const prayerIqamaDivs =
+            htmlParsed.querySelectorAll('.prayer_iqama_div');
+          prayerIqamaDivs.forEach((div) => {
+            let text: string = div.textContent as string;
+            const matches: Array<string> | null = text.match(timePattern);
+            if (matches) {
+              this.iqamas = this.iqamas
+                ? [...this.iqamas, ...matches]
+                : [...matches]; //;
+            }
+          });
 
-    const prayerAzaanDiv = htmlParsed.querySelectorAll('.prayer_azaan_div');
-    prayerAzaanDiv.forEach((div) => {
-      let text: string = div.textContent as string;
-      const matches: Array<string> | null = text.match(timePattern);
-      if (matches) {
-        this.azaans = [...this.azaans, ...matches];
-      }
-    });
-    this.loadTime();
-  }
-
-  prepareTimings(): void {
-    this.salahTimings
-      .getTimes()
-      .pipe(first())
-      .subscribe((htmlContent) => {
-        const parser = new DOMParser();
-        const htmlParsed = parser.parseFromString(htmlContent, 'text/html');
-        const timePattern = /\b\d{1,2}:\d{2}\s*(?:AM|PM)\b/g;
-        const prayerIqamaDivs =
-          htmlParsed.querySelectorAll('.prayer_iqama_div');
-        prayerIqamaDivs.forEach((div) => {
-          let text: string = div.textContent as string;
-          const matches: Array<string> | null = text.match(timePattern);
-          if (matches) {
-            this.iqamas = [...this.iqamas, ...matches];
-          }
-        });
-
-        const prayerAzaanDiv = htmlParsed.querySelectorAll('.prayer_azaan_div');
-        prayerAzaanDiv.forEach((div) => {
-          let text: string = div.textContent as string;
-          const matches: Array<string> | null = text.match(timePattern);
-          if (matches) {
-            this.azaans = [...this.azaans, ...matches];
-          }
-        });
-        this.loadTime();
+          const prayerAzaanDiv =
+            htmlParsed.querySelectorAll('.prayer_azaan_div');
+          prayerAzaanDiv.forEach((div) => {
+            let text: string = div.textContent as string;
+            const matches: Array<string> | null = text.match(timePattern);
+            if (matches) {
+              this.azaans = this.azaans
+                ? [...this.azaans, ...matches]
+                : [...matches]; //...this.azaans,
+            }
+          });
+          this.loadTime();
+        }, 0);
       });
   }
 
