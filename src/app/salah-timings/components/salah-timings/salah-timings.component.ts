@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, afterNextRender } from '@angular/core';
 import { Observable, first, interval, map, take, timer } from 'rxjs';
 import { PrayerText, assetImage } from '../../../shared/app.const';
 import { SalahWakt } from '../../../shared/app.interfaces';
@@ -24,14 +24,21 @@ export class SalahTimingsComponent implements OnInit {
   hizriDate: string | null = null;
   englishDate: string | null = null;
   clock: Observable<Date>;
+  timeHtmlContent;
   constructor(
     private salahTimings: TimingsService,
     private fileManager: FileManagerService
-  ) {}
+  ) {
+    afterNextRender(() => {
+      this.setClock();
+      this.parseTimings();
+    });
+  }
 
   ngOnInit(): void {
     this.setLogo();
-    this.prepareTimings();
+    // this.prepareTimings();
+    this.getTimings();
     this.setDate();
     // this.setClock();
   }
@@ -42,6 +49,42 @@ export class SalahTimingsComponent implements OnInit {
 
   setLogo() {
     this.logo = this.fileManager.getLogo();
+  }
+
+  getTimings() {
+    this.salahTimings
+      .getTimes()
+      .pipe(first())
+      .subscribe((htmlContent) => {
+        this.timeHtmlContent = htmlContent;
+      });
+  }
+
+  parseTimings() {
+    const parser = new DOMParser();
+    const htmlParsed = parser.parseFromString(
+      this.timeHtmlContent,
+      'text/html'
+    );
+    const timePattern = /\b\d{1,2}:\d{2}\s*(?:AM|PM)\b/g;
+    const prayerIqamaDivs = htmlParsed.querySelectorAll('.prayer_iqama_div');
+    prayerIqamaDivs.forEach((div) => {
+      let text: string = div.textContent as string;
+      const matches: Array<string> | null = text.match(timePattern);
+      if (matches) {
+        this.iqamas = [...this.iqamas, ...matches];
+      }
+    });
+
+    const prayerAzaanDiv = htmlParsed.querySelectorAll('.prayer_azaan_div');
+    prayerAzaanDiv.forEach((div) => {
+      let text: string = div.textContent as string;
+      const matches: Array<string> | null = text.match(timePattern);
+      if (matches) {
+        this.azaans = [...this.azaans, ...matches];
+      }
+    });
+    this.loadTime();
   }
 
   prepareTimings(): void {
