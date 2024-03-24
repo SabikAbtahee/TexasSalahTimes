@@ -7,10 +7,10 @@
     >
       <img [src]="logo" />
     </div>
-    @if(azaans && azaans.length>0){
+    <!-- @if(isAzaanLoaded){ -->
     <div class="flex flex-row justify-evenly w-full items-center">
       <div>
-        <app-timer-card [text]="prayerText.Fazr" [time]="azaan?.Fazr" />
+        <app-timer-card [text]="prayerText.Fazr" [time]="azaan?.Fajr" />
       </div>
       <div>
         <app-timer-card [text]="prayerText.Dhuhr" [time]="azaan?.Dhuhr" />
@@ -25,7 +25,7 @@
         <app-timer-card [text]="prayerText.Isha" [time]="azaan?.Isha" />
       </div>
     </div>
-    }
+    <!-- } -->
   </div>
 
   <div
