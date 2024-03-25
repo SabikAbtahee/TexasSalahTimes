@@ -2,9 +2,8 @@ import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env';
-import { Observable, delay, map, retry } from 'rxjs';
+import { delay, retry } from 'rxjs';
 import { IslamicMonths } from '../shared/app.const';
-import { SalahWakt } from '../shared/app.interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -12,12 +11,8 @@ import { SalahWakt } from '../shared/app.interfaces';
 export class TimingsService {
   constructor(private http: HttpClient, private datePipe: DatePipe) {}
 
-  // getTimes() {
-  //   return this.http.get(environment.PrayerTimings, { responseType: 'text' }).pipe(retry(3));
-  // }
-
-  getTimes():Observable<SalahWakt> {
-    return this.http.get(`${environment.BEEndpoint}/salah-times`, { responseType: 'json' }).pipe(map(res=>res as SalahWakt));
+  getTimes() {
+    return this.http.get(environment.PrayerTimings, { responseType: 'text' }).pipe(retry(3));
   }
 
   getHizriDate(date?: Date): string {
