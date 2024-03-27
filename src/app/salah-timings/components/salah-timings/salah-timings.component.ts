@@ -66,11 +66,14 @@ export class SalahTimingsComponent implements OnInit, OnDestroy {
   }
 
   setClock() {
-    this.clock = timer(0, 1000).pipe(tap(() => {
-      if (new Date().getHours() === 0) {
-        this.setDate();
-      }
-    }),map(() => new Date()));
+    this.clock = timer(0, 1000).pipe(
+      tap(() => {
+        if (new Date().getSeconds() === 0) {
+          this.setDate();
+        }
+      }),
+      map(() => new Date())
+    );
   }
 
   setLogo() {
@@ -150,6 +153,5 @@ export class SalahTimingsComponent implements OnInit, OnDestroy {
     this.salahTimings.getHizriDate().then((res) => {
       this.hizriDate = res;
     });
-
   }
 }
