@@ -7,25 +7,23 @@
     >
       <img [src]="logo" />
     </div>
-    @if(azaans && azaans.length>0){
     <div class="flex flex-row justify-evenly w-full items-center">
       <div>
-        <app-timer-card [text]="prayerText.Fazr" [time]="azaan?.Fajr" />
+        <app-timer-card [text]="prayerText.Fazr" [time]="iqama?.Fajr" />
       </div>
       <div>
-        <app-timer-card [text]="prayerText.Dhuhr" [time]="azaan?.Dhuhr" />
+        <app-timer-card [text]="prayerText.Dhuhr" [time]="iqama?.Dhuhr" />
       </div>
       <div>
-        <app-timer-card [text]="prayerText.Asr" [time]="azaan?.Asr" />
+        <app-timer-card [text]="prayerText.Asr" [time]="iqama?.Asr" />
       </div>
       <div>
-        <app-timer-card [text]="prayerText.Maghrib" [time]="azaan?.Maghrib" />
+        <app-timer-card [text]="prayerText.Maghrib" [time]="iqama?.Maghrib" />
       </div>
       <div>
-        <app-timer-card [text]="prayerText.Isha" [time]="azaan?.Isha" />
+        <app-timer-card [text]="prayerText.Isha" [time]="iqama?.Isha" />
       </div>
     </div>
-    }
   </div>
 
   <div

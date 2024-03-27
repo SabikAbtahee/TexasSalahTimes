@@ -13,6 +13,7 @@ import {
   first,
   map,
   takeUntil,
+  tap,
   timer,
 } from 'rxjs';
 import { FileManagerService } from '../../../services/file-manager.service';
@@ -48,6 +49,7 @@ export class SalahTimingsComponent implements OnInit, OnDestroy {
     this._unsubscribeAll = new Subject();
     afterNextRender(() => {
       this.setClock();
+      this.setDate();
       this.parseTimings();
     });
   }
@@ -60,11 +62,14 @@ export class SalahTimingsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.setLogo();
     this.getTimings();
-    this.setDate();
   }
 
   setClock() {
-    this.clock = timer(0, 1000).pipe(map(() => new Date()));
+    this.clock = timer(0, 1000).pipe(tap(() => {
+      if (new Date().getHours() === 0) {
+        this.setDate();
+      }
+    }),map(() => new Date()));
   }
 
   setLogo() {
@@ -142,5 +147,6 @@ export class SalahTimingsComponent implements OnInit, OnDestroy {
   setDate() {
     this.hizriDate = this.salahTimings.getHizriDate();
     this.englishDate = this.salahTimings.getEnglishDate();
+
   }
 }
