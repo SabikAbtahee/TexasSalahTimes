@@ -21,6 +21,7 @@ import { TimingsService } from '../../../services/timings.service';
 import { fuseAnimations } from '../../../shared/animations';
 import { PrayerText, assetImage } from '../../../shared/app.const';
 import { SalahWakt } from '../../../shared/app.interfaces';
+
 @Component({
   selector: 'app-salah-timings',
   templateUrl: './salah-timings.component.html',
@@ -145,8 +146,10 @@ export class SalahTimingsComponent implements OnInit, OnDestroy {
   }
 
   setDate() {
-    this.hizriDate = this.salahTimings.getHizriDate();
     this.englishDate = this.salahTimings.getEnglishDate();
+    this.salahTimings.getHizriDate().then((res) => {
+      this.hizriDate = res;
+    });
 
   }
 }
