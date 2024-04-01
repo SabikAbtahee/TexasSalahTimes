@@ -1,55 +1,19 @@
 {
-  "name": "texas-salah-times",
-  "version": "0.0.0",
+  "name": "texassalahtimes",
+  "version": "1.0.0",
+  "description": "This project demo link: https://sabikabtahee.github.io/TexasSalahTimes/timings",
+  "main": "app.js",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "build-page": "ng b --output-path dist --base-href /TexasSalahTimes/ && xcopy /E /Y dist\\browser docs",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:SalahTimes": "node dist/texas-salah-times/server/server.mjs"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
-  "private": true,
-  "dependencies": {
-    "@angular/animations": "^17.3.0",
-    "@angular/common": "^17.3.0",
-    "@angular/compiler": "^17.3.0",
-    "@angular/core": "^17.3.0",
-    "@angular/forms": "^17.3.0",
-    "@angular/platform-browser": "^17.3.0",
-    "@angular/platform-browser-dynamic": "^17.3.0",
-    "@angular/platform-server": "^17.3.0",
-    "@angular/router": "^17.3.0",
-    "@angular/ssr": "^17.3.0",
-    "dom-parser": "^1.1.5",
-    "express": "^4.18.2",
-    "hijri-converter": "^1.1.1",
-    "hijri-date": "^0.2.2",
-    "htmlparser2": "^9.1.0",
-    "node-html-parser": "^6.1.12",
-    "rxjs": "~7.8.0",
-    "suncalc": "^1.9.0",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.14.3"
-  },
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
-    "@angular-devkit/build-angular": "^17.3.0",
-    "@angular/cli": "^17.3.0",
-    "@angular/compiler-cli": "^17.3.0",
-    "@types/express": "^4.17.17",
-    "@types/jasmine": "~5.1.0",
-    "@types/node": "^18.18.0",
-    "angular-cli-ghpages": "^2.0.0-beta.2",
-    "autoprefixer": "^10.4.18",
-    "jasmine-core": "~5.1.0",
-    "karma": "~6.4.0",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.0",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.1.0",
-    "postcss": "^8.4.36",
-    "tailwindcss": "^3.4.1",
-    "typescript": "~5.4.2"
+    "nodemon": "^3.1.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2"
   }
 }
