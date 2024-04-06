@@ -2,18 +2,25 @@
   "name": "texassalahtimes",
   "version": "1.0.0",
   "description": "This project demo link: https://sabikabtahee.github.io/TexasSalahTimes/timings",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "nodemon src/app.js"
+
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "tailwindcss": "^3.4.3"
   },
   "dependencies": {
+    "autoprefixer": "^10.4.19",
+    "axios": "^1.6.8",
     "body-parser": "^1.20.2",
-    "express": "^4.19.2"
+    "ejs": "^3.1.9",
+    "express": "^4.19.2",
+    "htmlparser2": "^9.1.0",
+    "postcss-cli": "^11.0.0"
   }
 }
