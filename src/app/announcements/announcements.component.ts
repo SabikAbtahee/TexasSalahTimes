@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FileManagerService } from '../services/file-manager.service';
 import { NgOptimizedImage } from '@angular/common';
+import { environment } from '@env';
 
 @Component({
   selector: 'app-announcements',
@@ -17,6 +18,6 @@ export class AnnouncementsComponent {
   }
 
   ngOnInit() {
-    this.currentAnnouncementImagePath = this.fileManager.getCurrentAnnouncementImage('RamadanMubarak.png');
+    this.currentAnnouncementImagePath = this.fileManager.getCurrentAnnouncementImage(environment.CurrentImageName);
   }
 }

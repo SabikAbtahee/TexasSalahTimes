@@ -20,3 +20,4 @@ import { AnnouncementsComponent } from "../announcements/announcements.component
     ]
 })
 export class SalahTimingsModule {}
+// test
