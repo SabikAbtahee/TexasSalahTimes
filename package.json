@@ -8,14 +8,10 @@
     "build-page": "ng b --output-path dist --base-href /TexasSalahTimes/ && xcopy /E /Y dist\\browser docs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:SalahTimes": "node dist/texas-salah-times/server/server.mjs"
+    "serve:ssr:SalahTimes": "node dist/texas-salah-times/server/server.mjs",
+    "prepare": "husky"
   },
   "private": true,
-  "husky": {
-    "hooks":{
-      "pre-commit":"npm run build-page && git add -A ."
-    }
-  },
   "dependencies": {
     "@angular/animations": "^17.3.0",
     "@angular/common": "^17.3.0",
