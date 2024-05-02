@@ -11,6 +11,11 @@
     "serve:ssr:SalahTimes": "node dist/texas-salah-times/server/server.mjs"
   },
   "private": true,
+  "husky": {
+    "hooks":{
+      "post-commit":"npm run build-page"
+    }
+  },
   "dependencies": {
     "@angular/animations": "^17.3.0",
     "@angular/common": "^17.3.0",
@@ -42,6 +47,7 @@
     "@types/node": "^18.18.0",
     "angular-cli-ghpages": "^2.0.0-beta.2",
     "autoprefixer": "^10.4.18",
+    "husky": "^9.0.11",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
