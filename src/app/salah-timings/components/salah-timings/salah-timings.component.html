@@ -7,7 +7,7 @@
     >
       <img [src]="logo" />
     </div>
-    <div class="flex flex-col gap-4 w-full items-center">
+    <div class="flex flex-col gap-4 w-full items-center justify-center">
       @if(changeScene){
       <div class="flex flex-row justify-evenly w-full items-center">
         <div>
@@ -29,7 +29,7 @@
       }
 
       <div class="flex flex-row justify-evenly w-full items-center">
-        @if(jummah.length==2 && (!changeScene)){
+        @if(jummah.length==2 &&  !changeScene){
         <div>
           <app-timer-card
             [text]="jummahtext.Khutbah1"
