@@ -5,30 +5,62 @@
     <div
       class="h-36 w-36 max-md:h-28 max-md:w-28 max-sm:h-20 max-sm:w-20 flex justify-center items-center p-3 gap-2"
     >
-    <!---  <img [src]="logo" />-->
+      <img [src]="logo" />
     </div>
-    <div class="flex flex-row justify-evenly w-full items-center">
-      <div>
-        <app-timer-card [text]="prayerText.Fazr" [time]="iqama?.Fajr" />
+    <div class="flex flex-col gap-4 w-full items-center">
+      @if(changeScene){
+      <div class="flex flex-row justify-evenly w-full items-center">
+        <div>
+          <app-timer-card [text]="prayerText.Fazr" [time]="iqama?.Fajr" />
+        </div>
+        <div>
+          <app-timer-card [text]="prayerText.Dhuhr" [time]="iqama?.Dhuhr" />
+        </div>
+        <div>
+          <app-timer-card [text]="prayerText.Asr" [time]="iqama?.Asr" />
+        </div>
+        <div>
+          <app-timer-card [text]="prayerText.Maghrib" [time]="iqama?.Maghrib" />
+        </div>
+        <div>
+          <app-timer-card [text]="prayerText.Isha" [time]="iqama?.Isha" />
+        </div>
       </div>
-      <div>
-        <app-timer-card [text]="prayerText.Dhuhr" [time]="iqama?.Dhuhr" />
+      }
+
+      <div class="flex flex-row justify-evenly w-full items-center">
+        @if(jummah.length==2 && (!changeScene)){
+        <div>
+          <app-timer-card
+            [text]="jummahtext.Khutbah1"
+            [time]="jummah && jummah[0].Khutbah"
+          />
+        </div>
+        <div>
+          <app-timer-card
+            [text]="jummahtext.Prayer1"
+            [time]="jummah && jummah[0].Prayer"
+          />
+        </div>
+        <div>
+          <app-timer-card
+            [text]="jummahtext.Khutbah2"
+            [time]="jummah && jummah[1].Khutbah"
+          />
+        </div>
+        <div>
+          <app-timer-card
+            [text]="jummahtext.Prayer2"
+            [time]="jummah && jummah[1].Prayer"
+          />
+        </div>
+        }
       </div>
-      <div>
-        <app-timer-card [text]="prayerText.Asr" [time]="iqama?.Asr" />
-      </div>
-      <div>
-        <app-timer-card [text]="prayerText.Maghrib" [time]="iqama?.Maghrib" />
-      </div>
-      <div>
-        <app-timer-card [text]="prayerText.Isha" [time]="iqama?.Isha" />
-      </div>
-      
     </div>
   </div>
 
   <div
-    class="flex justify-center font-bold text-3xl max-lg:text-2xl max-md:text-xl max-sm:text-sm gap-2 text-color-gray mt-1 symphony"
+    class="flex justify-center font-bold text-2xl max-lg:text-xl max-md:text-lg max-sm:text-sm gap-2 text-color-gray mt-1 symphony"
   >
     <span>{{ clock | async | date : "hh:mm:ss a" }}</span> |
     <span> {{ englishDate }} </span>|<span>{{ hizriDate }}</span>

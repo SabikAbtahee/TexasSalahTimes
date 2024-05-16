@@ -19,9 +19,8 @@ import {
 import { FileManagerService } from '../../../services/file-manager.service';
 import { TimingsService } from '../../../services/timings.service';
 import { fuseAnimations } from '../../../shared/animations';
-import { PrayerText, assetImage } from '../../../shared/app.const';
-import { SalahWakt } from '../../../shared/app.interfaces';
-
+import { Jummahtext, PrayerText, assetImage } from '../../../shared/app.const';
+import { JummahWakt, SalahWakt } from '../../../shared/app.interfaces';
 @Component({
   selector: 'app-salah-timings',
   templateUrl: './salah-timings.component.html',
@@ -31,12 +30,14 @@ import { SalahWakt } from '../../../shared/app.interfaces';
 export class SalahTimingsComponent implements OnInit, OnDestroy {
   iqama: SalahWakt | null = null;
   azaan: SalahWakt | null = null;
+  jummah: JummahWakt[] = [];
   iqamas: string[];
   azaans: string[];
-
+    changeScene: boolean = true;
   image = assetImage;
   logo: string;
   prayerText = PrayerText;
+  jummahtext = Jummahtext;
   hizriDate: string | null = null;
   englishDate: string | null = null;
   clock: Observable<Date>;
@@ -51,7 +52,7 @@ export class SalahTimingsComponent implements OnInit, OnDestroy {
     afterNextRender(() => {
       this.setClock();
       this.setDate();
-      this.parseTimings();
+        this.parseTimings();
     });
   }
   ngOnDestroy(): void {
@@ -71,6 +72,9 @@ export class SalahTimingsComponent implements OnInit, OnDestroy {
         if (new Date().getSeconds() === 0) {
           this.setDate();
         }
+        if (new Date().getSeconds() %5== 0) {
+            this.changeScene = !this.changeScene;
+          }
       }),
       map(() => new Date())
     );
@@ -109,6 +113,7 @@ export class SalahTimingsComponent implements OnInit, OnDestroy {
               this.iqamas = this.iqamas
                 ? [...this.iqamas, ...matches]
                 : [...matches]; //;
+              this.parseJummahTimings(this.iqamas);
             }
           });
 
@@ -127,6 +132,22 @@ export class SalahTimingsComponent implements OnInit, OnDestroy {
         }, 0);
       });
   }
+
+  parseJummahTimings(value: string[]) {
+    if (value && value.length >= 9) {
+      this.jummah = [
+        {
+          Khutbah: value[5],
+          Prayer: value[6],
+        },
+        {
+          Khutbah: value[7],
+          Prayer: value[8],
+        },
+      ];
+    }
+  }
+
 
   loadTime() {
     this.iqama = {

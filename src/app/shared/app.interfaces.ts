@@ -8,3 +8,8 @@ export interface SalahWakt{
   [PrayerText.Isha]: string;
   [PrayerText.Jummah]: string;
 }
+
+export interface JummahWakt{
+    Khutbah: string;
+    Prayer: string;
+}

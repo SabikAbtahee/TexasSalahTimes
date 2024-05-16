@@ -10,6 +10,14 @@ export enum PrayerText {
   Jummah = 'Jummah',
 }
 
+export enum Jummahtext{
+    Khutbah1 = "Friday Khutbah 1",
+    Prayer1="Friday Prayer 1",
+    Khutbah2="Friday Khutbah 2",
+    Prayer2="Friday Prayer 2",
+    
+}
+
 export enum IslamicMonthsEnum {
   'Muharram'=1,
   'Safar',
