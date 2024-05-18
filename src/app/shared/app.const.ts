@@ -11,10 +11,10 @@ export enum PrayerText {
 }
 
 export enum Jummahtext{
-    Khutbah1 = "Friday Khutbah 1",
-    Prayer1="Friday Prayer 1",
-    Khutbah2="Friday Khutbah 2",
-    Prayer2="Friday Prayer 2",
+    Khutbah1 = "First Jummah Khutbah",
+    Prayer1="First Jummah Prayer",
+    Khutbah2="Second Jummah Khutbah",
+    Prayer2="Second Jummah Prayer",
     
 }
 
