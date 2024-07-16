@@ -21,4 +21,4 @@ export class AnnouncementsComponent {
     this.currentAnnouncementImagePath = this.fileManager.getCurrentAnnouncementImage(environment.CurrentImageName);
   }
 }
-//update2
+//update3
