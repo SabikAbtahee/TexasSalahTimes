@@ -84,3 +84,4 @@ export class TimingsService {
     return this.datePipe.transform(currentDate, 'E, MMMM dd, YYYY');
   }
 }
+//com
