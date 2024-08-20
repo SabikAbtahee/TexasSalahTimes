@@ -1,4 +1,4 @@
 export const environment = {
   PrayerTimings: "https://us.mohid.co/tx/dallas/ialfm/masjid/widget/api/index/?m=prayertimings",
-  CurrentImageName:"Pilars Academy flyer.jpg"
+  CurrentImageName:"may1v2.png"
 }
