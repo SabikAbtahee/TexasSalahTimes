@@ -21,7 +21,7 @@ export function app(): express.Express {
   // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser
   server.get('*.*', express.static(browserDistFolder, {
-    maxAge: 86400000
+    maxAge: 1200
   }));
 
   // All regular routes use the Angular engine
